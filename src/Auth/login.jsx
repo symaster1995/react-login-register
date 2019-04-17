@@ -6,14 +6,20 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            error: ''
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.routeToRegister = this.routeToRegister.bind(this)
     }
 
     handleChange(e) {
         const { name, value } = e.target
         this.setState({ [name]: value })
+    }
+
+    routeToRegister() {
+        this.props.history.push('/register')
     }
     
     render(){
@@ -41,7 +47,7 @@ class Login extends React.Component {
 
                 <div className="panel">
                     <div className="panel-body text-center">
-                        <span>Don't have an account?</span> <span className='link'>Register</span>
+                        <span>Don't have an account?</span> <span className='link' onClick={this.routeToRegister}>Register</span>
                     </div>
                 </div>
             </div>

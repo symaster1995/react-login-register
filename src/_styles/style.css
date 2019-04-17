@@ -10,11 +10,10 @@ input {
 
 .container {
     margin: 0 auto;
-    max-width: 935px;
     width: 100%;
 }
 
-#login {
+#login, #register {
     color: #262626;
     justify-content: center;
     margin: auto;
@@ -40,7 +39,7 @@ input {
     margin: 22px;
 }
 
-#login div {
+#login div, #register div {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -133,4 +132,8 @@ a, .link {
 
 .text-center {
     text-align: center;
+}
+
+.error-field input{
+    border: 1px solid #9c2626 !important;
 }
