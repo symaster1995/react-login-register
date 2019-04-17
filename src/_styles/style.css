@@ -1,0 +1,136 @@
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+input {
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 935px;
+    width: 100%;
+}
+
+#login {
+    color: #262626;
+    justify-content: center;
+    margin: auto;
+    margin-top: 12px;
+    max-width: 350px;
+    width: 100%;
+    border: 0 solid #000;
+}
+
+.panel {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+}
+
+.panel-header {
+    text-align: center;
+}
+
+.panel-body {
+    margin: 22px;
+}
+
+#login div {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form {
+    max-width: 100%;
+    position: relative;
+}
+
+.form .form-field {
+    margin: 0 0 6px;
+    clear: both;
+}
+
+.form .form-field input {
+    font-size: 16px;
+
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease,border-color .1s ease;
+    transition: color .1s ease,border-color .1s ease;
+
+    width: 100%;
+    vertical-align: top;
+    overflow: visible;
+    position: relative;
+
+}
+
+.form .button {
+    cursor: pointer;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    font-weight: 700;
+    line-height: 1em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+}
+
+
+.teal.button {
+    background-color: #00b5ad;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
+}
+
+.large.button {
+    font-size: 1.14em;
+}
+
+.fluid.button {
+    display: block;
+    width: 100%;
+}
+
+.disabled.button, .button:disabled {
+    cursor: default;
+    opacity: .45!important;
+    background-image: none!important;
+    box-shadow: none!important;
+    pointer-events: none!important;
+}
+
+a, .link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #7070d0;
+}
+
+.text-center {
+    text-align: center;
+}
