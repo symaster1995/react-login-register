@@ -47,13 +47,13 @@ module.exports = {
                     presets: [
                         'react',
                         'es2015',
-                        'stage-0'
+                        'stage-2',
                     ],
                     plugins: [
                         'add-module-exports',
                         'react-html-attrs',
                         'transform-class-properties',
-                        'transform-decorators-legacy'
+                        'transform-decorators-legacy',
                     ],
                 },
                 include: [
