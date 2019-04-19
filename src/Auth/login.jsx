@@ -40,7 +40,7 @@ class Login extends React.Component {
                             <div className='form-field'>
                                 <input type="password" placeholder='Password' onChange={this.handleChange} name='password'/>
                             </div>
-                            <button className="button fluid large teal" disabled={!isEnabled}>Log In</button>
+                            <button className="button fluid login" disabled={!isEnabled}>Log In</button>
                         </form>
                     </div>
                 </div>

@@ -47,10 +47,11 @@ input {
 .form {
     max-width: 100%;
     position: relative;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .form .form-field {
-    margin: 0 0 6px;
+    margin: 0 0 24px;
     clear: both;
 }
 
@@ -82,21 +83,25 @@ input {
 }
 
 .form .button {
-    cursor: pointer;
-    min-height: 1em;
     outline: 0;
-    border: none;
     vertical-align: baseline;
     background: #e0e1e2 none;
     color: rgba(0,0,0,.6);
-    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     margin: 0 .25em 0 0;
-    padding: .78571429em 1.5em .78571429em;
-    font-weight: 700;
-    line-height: 1em;
     text-align: center;
     text-decoration: none;
-    border-radius: .28571429rem;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 22px;
+    height: 46px;
+    text-shadow: unset;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 
@@ -119,7 +124,6 @@ input {
 .disabled.button, .button:disabled {
     cursor: default;
     opacity: .45!important;
-    background-image: none!important;
     box-shadow: none!important;
     pointer-events: none!important;
 }
@@ -136,4 +140,24 @@ a, .link {
 
 .error-field input{
     border: 1px solid #9c2626 !important;
+}
+
+.login.button,
+.register.button {
+    background-size: 200% auto;
+    background-image: linear-gradient(45deg,#00D4C3,#9327F5);
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.login.button:hover,
+.register.button:hover {
+    /* background: #6c89dc; */
+    background-image: linear-gradient(45deg,#6c89dc,#6c89dc);
+}
+
+
+.error-message {
+    color: red;
+    margin-top: 4px;
 }

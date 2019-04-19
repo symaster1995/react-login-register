@@ -13,7 +13,13 @@ class Register extends React.Component {
                 password: '',
                 email: ''
             },
-            error: ''
+            formValid: true,
+            errors: {
+                name: null,
+                username: null,
+                password: null,
+                email: null
+            }
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -39,36 +45,48 @@ class Register extends React.Component {
     handleSubmit(e){
         e.preventDefault()
 
-        var errors = []
-
         const form = this.state.form
+        const validate = this.validate(form)
 
-        for (var key in form) {
-            const validate = this.validate(key, form[key])
-            if (validate) errors.push(validate)
+        if (!validate.valid) {
+            this.setState(state => ({
+                ...state,
+                errors: validate.errorMessages
+            }))
+        }else{
+
+            //SUBMIT TO STORE REDUX
+
+            this.setState(state => ({
+                ...state,
+                errors: validate.errorMessages,
+                formValid: validate.valid
+            }))
         }
 
-        console.log(errors)
-        console.log(this.state.form)
+        console.log(validate)
     }
 
-    validate(name, value){
+    validate(data){
 
-        switch(name) {
-            case 'email':
-                const email = validation.required(name, value)
-                return email ? { name: name, message: email } : null
-            case 'name':
-                const fullName = validation.required(name, value)
-                return fullName ? { name: name, message: fullName } : null
-            case 'username':
-                const username = validation.required(name, value)
-                return username ? { name: name, message: username } : null
-            case 'password':
-                const password = validation.required(name, value)
-                return password ? { name: name, message: password} : null
-            default:
-                return null
+        const email = validation.email('email', data.email)
+        const fullName = validation.required('name', data.name)
+        const username = validation.required('username', data.username)
+        const password = validation.password('password', data.password)
+        
+
+        const valid = email || fullName || username || password ? false : true;
+
+        const errorMessages = {
+            email: email,
+            name: fullName,
+            username: username,
+            password: password
+        }
+
+        return {
+            errorMessages,
+            valid
         }
     }
 
@@ -81,20 +99,24 @@ class Register extends React.Component {
                     </div>
                     <div className="panel-body">
                         <form className='form'>
-                            <div className='form-field'>
+                            <div className={'form-field ' + (this.state.errors.name ? 'error-field' : '')}>
                                 <input type="text" placeholder='Full Name' onChange={this.handleChange} name='name'/>
+                                <div className="error-message">{this.state.errors.name}</div>
                             </div>
-                            <div className='form-field'>
+                            <div className={'form-field ' + (this.state.errors.email ? 'error-field' : '')}>
                                 <input type="text" placeholder='Email' onChange={this.handleChange} name='email'/>
+                                <div className="error-message">{this.state.errors.email}</div>
                             </div>
-                            <div className='form-field'>
+                            <div className={'form-field ' + (this.state.errors.username ? 'error-field' : '')}>
                                 <input type="text" placeholder='Username' onChange={this.handleChange} name='username' />
+                                <div className="error-message">{this.state.errors.username}</div>
                             </div>
-                            <div className='form-field'>
+                            <div className={'form-field ' + (this.state.errors.password ? 'error-field' : '')}>
                                 <input type="password" placeholder='Password' onChange={this.handleChange} name='password'/>
+                                <div className="error-message">{this.state.errors.password}</div>
                             </div>
                             
-                            <button className="button fluid large teal" onClick={this.handleSubmit} >Register</button>
+                            <button className="button fluid register" onClick={this.handleSubmit} >Register</button>
                         </form>
                     </div>
                 </div>
