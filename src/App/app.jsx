@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Router, Route} from 'react-router-dom'
 import { Login } from '../Auth'
 import { Register } from '../Register'
-import { history } from '../_helpers/history'
+import { history } from '../_helpers'
 
 const App = () => {
 	return (
