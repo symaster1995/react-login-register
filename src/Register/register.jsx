@@ -1,12 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+import { connect } from 'react-redux'
 import { validation } from '../_helpers'
+import { userActions } from '../User'
 
-class Register extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state={
+        this.state = {
             form: {
                 name: '',
                 username: '',
@@ -27,13 +28,33 @@ class Register extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    routeToLogin(){
+    routeToLogin() {
         this.props.history.push('/login')
     }
 
-    handleChange(e){
+    clearForm() {
+        this.setState(
+            {
+                form: {
+                    name: '',
+                    username: '',
+                    password: '',
+                    email: ''
+                },
+                formValid: true,
+                errors: {
+                    name: null,
+                    username: null,
+                    password: null,
+                    email: null
+                }
+            }
+        )
+    }
+
+    handleChange(e) {
         const { name, value } = e.target
-        this.setState( state => ({
+        this.setState(state => ({
             ...state,
             form: {
                 ...state.form,
@@ -42,10 +63,13 @@ class Register extends React.Component {
         }));
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         e.preventDefault()
 
         const form = this.state.form
+
+        // this.props.dispatch(userActions.createUser(form))
+
         const validate = this.validate(form)
 
         if (!validate.valid) {
@@ -53,27 +77,26 @@ class Register extends React.Component {
                 ...state,
                 errors: validate.errorMessages
             }))
-        }else{
-
-            //SUBMIT TO STORE REDUX
+        } else {
 
             this.setState(state => ({
                 ...state,
                 errors: validate.errorMessages,
                 formValid: validate.valid
             }))
-        }
 
-        console.log(validate)
+            const request = this.props.dispatch(userActions.createUser(form))
+            this.clearForm()
+        }
     }
 
-    validate(data){
+    validate(data) {
 
         const email = validation.email('email', data.email)
         const fullName = validation.required('name', data.name)
         const username = validation.required('username', data.username)
         const password = validation.password('password', data.password)
-        
+
 
         const valid = email || fullName || username || password ? false : true;
 
@@ -90,8 +113,13 @@ class Register extends React.Component {
         }
     }
 
-    render(){
-        return(
+    render() {
+
+        const { alert } = this.props
+
+        const alertContainer = alert.message ? <div className={alert.type + ' alert'}>{alert.message}</div> : ''
+
+        return (
             <div id="register">
                 <div className='panel'>
                     <div className="panel-header">
@@ -100,11 +128,11 @@ class Register extends React.Component {
                     <div className="panel-body">
                         <form className='form'>
                             <div className={'form-field ' + (this.state.errors.name ? 'error-field' : '')}>
-                                <input type="text" placeholder='Full Name' onChange={this.handleChange} name='name'/>
+                                <input type="text" placeholder='Full Name' onChange={this.handleChange} name='name' />
                                 <div className="error-message">{this.state.errors.name}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.email ? 'error-field' : '')}>
-                                <input type="text" placeholder='Email' onChange={this.handleChange} name='email'/>
+                                <input type="text" placeholder='Email' onChange={this.handleChange} name='email' />
                                 <div className="error-message">{this.state.errors.email}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.username ? 'error-field' : '')}>
@@ -112,12 +140,13 @@ class Register extends React.Component {
                                 <div className="error-message">{this.state.errors.username}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.password ? 'error-field' : '')}>
-                                <input type="password" placeholder='Password' onChange={this.handleChange} name='password'/>
+                                <input type="password" placeholder='Password' onChange={this.handleChange} name='password' />
                                 <div className="error-message">{this.state.errors.password}</div>
                             </div>
-                            
+
                             <button className="button fluid register" onClick={this.handleSubmit} >Register</button>
                         </form>
+                        {alertContainer}
                     </div>
                 </div>
 
@@ -132,4 +161,11 @@ class Register extends React.Component {
 }
 
 
-export { Register }
+const mapStateToProps = state => {
+    return {
+        alert: state.alert
+    }
+}
+
+
+export const Register = connect(mapStateToProps)(RegisterPage)

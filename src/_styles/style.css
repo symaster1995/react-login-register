@@ -160,3 +160,16 @@ a, .link {
     color: red;
     margin-top: 4px;
 }
+
+.alert {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.alert-success {
+    color: #069006
+}
+
+.alert-error {
+    color: red
+}
