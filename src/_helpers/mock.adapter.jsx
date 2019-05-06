@@ -25,7 +25,20 @@ mock.onPost('/users').reply(config => {
 
             localStorage.setItem('users', JSON.stringify(users))
 
-            resolve([200, {message: 'Registration Succesful'}])
+            resolve([200, { message: 'Registration Succesful' }])
+        }
+    })
+})
+
+mock.onPost('/login').reply(config => {
+    return new Promise((resolve, reject) => {
+        const parsedData = JSON.parse(config.data)
+        let checkUser = users.filter(user => { return user.username === parsedData.username && user.password === parsedData.password }).length
+
+        if (checkUser) {
+            resolve([200, { message: 'Login Successful' }])
+        } else {
+            reject({ message: 'User not found or wrong credentials' })
         }
     })
 })
