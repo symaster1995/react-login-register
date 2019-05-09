@@ -20,6 +20,7 @@ class LoginPage extends React.Component {
 
         componentDidMount() {
             if (this.props.alert.message) this.props.dispatch(alertActions.clear())
+            console.log(localStorage)
         }
 
         handleChange(e) {

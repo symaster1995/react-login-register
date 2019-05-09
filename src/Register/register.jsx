@@ -85,7 +85,7 @@ class RegisterPage extends React.Component {
                 formValid: validate.valid
             }))
 
-            const request = this.props.dispatch(userActions.createUser(form))
+            this.props.dispatch(userActions.createUser(form))
             this.clearForm()
         }
     }
@@ -128,19 +128,19 @@ class RegisterPage extends React.Component {
                     <div className="panel-body">
                         <form className='form'>
                             <div className={'form-field ' + (this.state.errors.name ? 'error-field' : '')}>
-                                <input type="text" placeholder='Full Name' onChange={this.handleChange} name='name' />
+                                <input type="text" placeholder='Full Name' onChange={this.handleChange} name='name' value={this.state.form.name} />
                                 <div className="error-message">{this.state.errors.name}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.email ? 'error-field' : '')}>
-                                <input type="text" placeholder='Email' onChange={this.handleChange} name='email' />
+                                <input type="text" placeholder='Email' onChange={this.handleChange} name='email' value={this.state.form.email} />
                                 <div className="error-message">{this.state.errors.email}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.username ? 'error-field' : '')}>
-                                <input type="text" placeholder='Username' onChange={this.handleChange} name='username' />
+                                <input type="text" placeholder='Username' onChange={this.handleChange} name='username' value={this.state.form.username} />
                                 <div className="error-message">{this.state.errors.username}</div>
                             </div>
                             <div className={'form-field ' + (this.state.errors.password ? 'error-field' : '')}>
-                                <input type="password" placeholder='Password' onChange={this.handleChange} name='password' />
+                                <input type="password" placeholder='Password' onChange={this.handleChange} name='password' value={this.state.form.password} />
                                 <div className="error-message">{this.state.errors.password}</div>
                             </div>
 

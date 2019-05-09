@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 let users = JSON.parse(localStorage.getItem('users')) || []
+let token = JSON.parse(localStorage.getItem('serverToken')) || []
 
 var MockAdapter = require('axios-mock-adapter');
 var mock = new MockAdapter(axios);
@@ -36,9 +37,21 @@ mock.onPost('/login').reply(config => {
         let checkUser = users.filter(user => { return user.username === parsedData.username && user.password === parsedData.password }).length
 
         if (checkUser) {
-            resolve([200, { message: 'Login Successful' }])
+
+            let randomToken = 'thisisatoken.imtoolazy.tofixthis'
+            token.push({ token: randomToken })
+            localStorage.setItem('serverToken', JSON.stringify(token))
+
+            resolve([200, { message: 'Login Successful', token: randomToken }])
         } else {
             reject({ message: 'User not found or wrong credentials' })
         }
+    })
+})
+
+mock.onPost('/logout').reply(config => {
+    return new Promise((resolve, reject) => {
+        localStorage.removeItem('serverToken')
+        resolve([200, { message: 'You are logged out' }])
     })
 })
