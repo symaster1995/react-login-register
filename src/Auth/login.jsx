@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { authActions } from '../Auth'
+import { alertActions } from '../Alert'
 
 class LoginPage extends React.Component {
         constructor(props) {
@@ -15,6 +16,10 @@ class LoginPage extends React.Component {
             this.handleChange = this.handleChange.bind(this)
             this.handleSubmit = this.handleSubmit.bind(this)
             this.routeToRegister = this.routeToRegister.bind(this)
+        }
+
+        componentDidMount() {
+            if (this.props.alert.message) this.props.dispatch(alertActions.clear())
         }
 
         handleChange(e) {
