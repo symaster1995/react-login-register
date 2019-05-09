@@ -1,4 +1,4 @@
-import { authConstants } from '../_constants' 
+import { authConstants } from '../_constants'
 import { alertActions } from '../Alert'
 import { authService } from './auth.service'
  
